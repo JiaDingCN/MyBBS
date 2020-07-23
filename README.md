@@ -21,11 +21,11 @@ This is a BBS website framework for project-practise in our class using Java Spr
 
 **Appearance:**
 
-
+![](https://github.com/JiaDingCN/Image/blob/master/img/1-1.png)
 
 **Mainly Contributors:**
 
-
+![](https://github.com/JiaDingCN/Image/blob/master/img/1-2.png)
 
 Laojieduo did the Database related works, xjizeyu did the frontend work. I designed the framework and did the backend work with yishiyu.
 
