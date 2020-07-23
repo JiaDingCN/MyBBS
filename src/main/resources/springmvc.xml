@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解扫描，只扫描Controller注解
+    spring扫描service和dao,springMVC扫描controller-->
+    <context:component-scan base-package="com.jiading.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--配置的视图解析器对象
+    注意InternalResourceViewResolver只是springMVC的众多视图解析器中的一个，但是是最经常使用的一个
+    InternalResourceViewResolver会把返回的视图名称都解析为InternalResourceView对象，
+    InternalResourceView会把Controller处理器方法返回的模型属性都存放到对应的request属性中，
+    然后通过RequestDispatcher在服务器端把请求forword重定向到目标URL。
+
+    比如在InternalResourceViewResolver中定义了prefix=/WEB-INF/，suffix=.jsp，
+    然后请求的Controller处理器方法返回的视图名称为test，
+    那么这个时候InternalResourceViewResolver就会把test解析为一个InternalResourceView对象，
+    先把返回的模型属性都存放到对应的HttpServletRequest属性中，
+    然后利用RequestDispatcher在服务器端把请求forword到/WEB-INF/test.jsp。
+    这就是InternalResourceViewResolver一个非常重要的特性，
+    我们都知道存放在/WEB-INF/下面的内容是不能直接通过request请求的方式请求到的，
+    为了安全性考虑，我们通常会把jsp文件放在WEB-INF目录下，而InternalResourceView在服务器端跳转的方式可以很好的解决这个问题。
+-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="contentType" value="text/html"/>
+    </bean>
+
+    <!--过滤静态资源
+    mvc:resources是spring MVC直接处理静态资源，将其映射到对应的文件夹直接获取内容-->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/img/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+
+    <!--开启SpringMVC注解的支持-->
+    <mvc:annotation-driven/>
+
+    <!--Multipart解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
+</beans>

@@ -1,0 +1,51 @@
+$main-color:white;
+$font-color:black;
+$background-color:#f4f5f7;
+
+.round {
+    border-radius: 0.3rem !important;
+
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+@mixin card {
+    @extend .round;
+    @extend .shadow;
+    background-color: $main-color;
+    overflow: hidden;
+    &:hover{
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15) !important;
+        text-decoration: none;
+    }
+}
+
+body {
+    background-color: $background-color;
+}
+
+@mixin log_container {
+    display: flex;
+    height: 100vh;
+
+    background : {
+        image: url('../../assets/login.png');
+        size: 100% 100%;
+        repeat: no-repeat;
+        size: cover;
+        position: center top;
+    }
+}
+
+.textBox{
+    padding: 5%;
+}
+
+@mixin  article{
+    text-indent: .5rem;
+    color: black;
+    font-size: 1rem;
+    white-space: pre-line;
+}
