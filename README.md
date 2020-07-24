@@ -5,6 +5,8 @@ This is a BBS website framework for project-practise in our class using Java Spr
 
 **Frontend codes are in webapp folder, but the source code is in frontend folder since the vue codes should be compiled first.**
 
+**All personal information has been replaced by an empty String, so you need to set them before running**
+
 **Using:**
 
 * Tomcat server
